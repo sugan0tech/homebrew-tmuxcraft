@@ -5,18 +5,22 @@ class Tmuxcraft < Formula
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-amd64"
-      sha256 "71e0ff49c8c4c9ec6324d43ce7d392c090b2f55831be91f4ee864a80d3238de6"
+      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-amd64.zip"
+      sha256 "ceebcc978b18959c991b0ba8c2cb78183c1394229eafc0fdda1a2355c04c7958"
     end
 
     if Hardware::CPU.arm?
-      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-arm64"
-      sha256 "5eb3300973af7b89493c622918ed806db8911f3de0a8bc2472aee8c9862d2241"
+      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-arm64.zip"
+      sha256 "a743d959cb3410350e181333e49933839990f8f64a67467e09c0e5f73caa3489"
     end
   end
 
   def install
-    bin.install "tmuxcraft"
+    # Unzip the archive
+    system "unzip", Dir["*.zip"].first
+
+    # Move the binary from dist/ to the bin directory
+    bin.install "dist/tmuxcraft"
   end
 
   test do
