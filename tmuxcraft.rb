@@ -5,26 +5,26 @@ class Tmuxcraft < Formula
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-amd64.zip"
-      sha256 "ceebcc978b18959c991b0ba8c2cb78183c1394229eafc0fdda1a2355c04c7958"
+      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.4/tmuxcraft-darwin-amd64.zip"
+      sha256 "383913a224531fa8711bd2e636b6549d263d0201c4d27f5b17ff393071ca6f21"
     end
 
     if Hardware::CPU.arm?
-      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.3/tmuxcraft-darwin-arm64.zip"
-      sha256 "a743d959cb3410350e181333e49933839990f8f64a67467e09c0e5f73caa3489"
+      url "https://github.com/sugan0tech/tmuxcraft/releases/download/v1.0.0-alpha.4/tmuxcraft-darwin-arm64.zip"
+      sha256 "383913a224531fa8711bd2e636b6549d263d0201c4d27f5b17ff393071ca6f21"
     end
   end
 
   def install
-    # Unzip the archive
-    system "unzip", Dir["*.zip"].first
-
-    # Move the binary from dist/ to the bin directory
+    # Extract and install the binary directly
+    system "unzip", cached_download # Extract the downloaded zip file
     bin.install "dist/tmuxcraft"
+
   end
 
   test do
-    system "#{bin}/tmuxcraft", "--help"
+    # Check that the installed binary runs correctly
+    assert_match "Usage", shell_output("#{bin}/tmuxcraft --help")
   end
 end
 
