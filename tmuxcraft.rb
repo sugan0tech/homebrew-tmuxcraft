@@ -1,7 +1,10 @@
 class Tmuxcraft < Formula
   desc "Go-based alternative to tmuxifier, using YAML configuration for tmux layouts"
   homepage "https://github.com/sugan0tech/tmuxcraft"
-  version "1.0.0-alpha.3"
+  version "1.0.0-alpha.4"
+  liscense "MIT"
+
+  depends_on "tmux"
 
   on_macos do
     if Hardware::CPU.intel?
@@ -16,14 +19,12 @@ class Tmuxcraft < Formula
   end
 
   def install
-    # Extract and install the binary directly
-    system "unzip", cached_download # Extract the downloaded zip file
+    system "unzip", cached_download 
     bin.install "dist/tmuxcraft"
 
   end
 
   test do
-    # Check that the installed binary runs correctly
     assert_match "Usage", shell_output("#{bin}/tmuxcraft --help")
   end
 end
