@@ -2,7 +2,7 @@ class Tmuxcraft < Formula
   desc "Go-based alternative to tmuxifier, using YAML configuration for tmux layouts"
   homepage "https://github.com/sugan0tech/tmuxcraft"
   version "1.0.0-alpha.4"
-  liscense "MIT"
+  license "MIT"
 
   depends_on "tmux"
 
